@@ -24,3 +24,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN_PERSONAL }}
           title: ${{ github.event.client_payload.user }}/${{ github.event.client_payload.repo }}
+          body: Add \#${{ github.event.client_payload.repo }} action repository by \#${{ github.event.client_payload.user }}. \nLorem ipstum\#${{ github.event.client_payload.description }}
