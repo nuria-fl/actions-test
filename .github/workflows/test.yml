@@ -1,19 +1,26 @@
-name: Test
-
-on: 
+name: "Handle Submission"
+on:
   repository_dispatch:
-    types: do-something
+    types: handle-submission
 
 jobs:
-  build:
-
+  create-pr:
+    name: Create PR
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo ${{ github.event.client_payload.user }}
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Process input
+        run: |
+          node utils/actions/process-issue.js
+      - name: Run prettier
+        run: |
+          npx prettier data/**/*.json --write
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN_PERSONAL }}
+          title: ${{ github.event.client_payload.user }}/${{ github.event.client_payload.repo }}
