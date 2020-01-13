@@ -23,7 +23,7 @@ jobs:
         uses: peter-evans/create-pull-request@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN_PERSONAL }}
-          title: ${{ github.event.client_payload.id }}/${{ github.event.client_payload.user }}/${{ github.event.client_payload.repo }}
+          title: ${{ github.event.client_payload.id }} - ${{ github.event.client_payload.user }}/${{ github.event.client_payload.repo }}
           body: |
             Add ${{ github.event.client_payload.repo }} action repository by ${{ github.event.client_payload.user }}.
             > ${{ github.event.client_payload.description }}
