@@ -23,6 +23,7 @@ jobs:
         uses: peter-evans/create-pull-request@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN_PERSONAL }}
+          branch-suffix: random
           title: ${{ github.event.client_payload.id }} - ${{ github.event.client_payload.repo }}
           body: |
             Submitter: ${{ github.event.client_payload.user }}
