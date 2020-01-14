@@ -28,3 +28,4 @@ jobs:
             Submitter: ${{ github.event.client_payload.user }}
             Repository: ${{ github.event.client_payload.repo }}
             > ${{ github.event.client_payload.description }}
+          labels: ${{ github.event.client_payload.id }}
