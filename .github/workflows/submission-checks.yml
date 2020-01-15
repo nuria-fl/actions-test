@@ -1,6 +1,6 @@
 name: "Submission checks"
 on:
-  pull_request:
+  push:
     branches:
       - create-pull-request/**
 
