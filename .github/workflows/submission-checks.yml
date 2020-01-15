@@ -1,8 +1,6 @@
 name: "Submission checks"
 on:
-  pull_request:
-    branches-ignore:
-      - master
+  pull_request
 
 env:
   NODE_VERSION: "10.x"
