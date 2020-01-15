@@ -1,0 +1,26 @@
+name: "Submission checks"
+on:
+  pull_request:
+    branches:
+      - create-pull-request/**
+
+env:
+  NODE_VERSION: "10.x"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  check:
+    name: Submission check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Validate owner
+        run: |
+          node utils/actions/validate-owner.js
+      - name: Validate license
+        run: |
+          node utils/actions/validate-license.js
