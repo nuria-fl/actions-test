@@ -1,8 +1,8 @@
 name: "Submission checks"
 on:
-  push:
-    branches:
-      - create-pull-request/**
+  pull_request:
+    branches-ignore:
+      - master
 
 env:
   NODE_VERSION: "10.x"

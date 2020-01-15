@@ -1,2 +1,4 @@
 console.log("validate license");
-console.log(process.env.GITHUB_EVENT_PATH);
+let data = require(process.env.GITHUB_EVENT_PATH);
+
+console.log(data);
