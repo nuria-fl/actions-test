@@ -21,4 +21,4 @@ jobs:
           node utils/actions/validate-owner.js
       - name: Validate license
         run: |
-          node utils/actions/validate-license.js
+          node utils/actions/dist/validate-license
