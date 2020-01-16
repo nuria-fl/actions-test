@@ -1,11 +1,8 @@
-console.log("validate license");
+const getInfo = require("./get-pr-info");
 let data = require(process.env.GITHUB_EVENT_PATH);
 
-const title = data.pull_request.title.split(" - ");
-const body = data.pull_request.body;
+console.log(data);
 
-const repo = title[1];
-const submitter = body.match(/Submitter: (.+?(?=\n))/);
+const info = getInfo(data);
 
-console.log(repo);
-console.log(submitter);
+console.log(info);
