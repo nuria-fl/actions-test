@@ -1,3 +1,4 @@
+const core = require("@actions/core");
 const github = require("@actions/github");
 const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
 
@@ -23,7 +24,10 @@ octokit
       owner: info.repoOwner
     }
   )
-  .then(result => {
-    console.log(result);
+  .then(({ repository }) => {
+    // TODO: filter valid licenses
+    if (!repository || !repository.licenseInfo) {
+      core.setFailed("No repository license information");
+    }
   })
   .catch(e => console.error(e));
